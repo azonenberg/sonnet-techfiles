@@ -1,3 +1,5 @@
 # Technology files
 
-* oshpark-4l-soldermask.stf: OSH Park 4-layer with soldermask
+## OSH Park
+
+* 4 layer, standard (thin) metal, solder mask
