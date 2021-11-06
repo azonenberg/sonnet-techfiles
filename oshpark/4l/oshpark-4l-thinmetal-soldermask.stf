@@ -27,6 +27,7 @@
       <mesh name="Ring_def" fill_type="Ring" type="via"/>
       <mesh name="Staircase_def" fill_type="Staircase" type="metal"/>
       <mesh name="Vertices_def" fill_type="Vertices" type="via"/>
+      <mesh name="Via1_mesh" fill_type="Ring" type="via"/>
     </mesh_defs>
     <metal_model_defs>
       <metal_model name="B.Cu_model" model_type="Normal"/>
@@ -39,6 +40,7 @@
       <metal_model name="Thin_def" model_type="Normal"/>
       <via_model name="Array_def" model_type="Array"/>
       <via_model name="Surface_def" model_type="Surface"/>
+      <via_model name="Via1_model" model_type="Volume"/>
       <via_model name="Volume_def" model_type="Volume"/>
     </metal_model_defs>
     <stackup>
@@ -59,6 +61,9 @@
       <diel name="Soldermask" dielectric="Soldermask" thickness="0.05"/>
       <diel name="Air" dielectric="Air" thickness="10.0"/>
       <BOTTOM material="Lossless" model="Default"/>
+      <vias>
+        <via_techlayer name="Via1" layer_name="Via1" from="F.Cu" to="B.Cu" material="Lossless" model="Via1_model" color_pattern="0" mesh="Via1_mesh"/>
+      </vias>
     </stackup>
   </public>
 </technology_file>
