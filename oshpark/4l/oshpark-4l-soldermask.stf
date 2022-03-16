@@ -10,17 +10,23 @@
         <params erel="3.5" tane="0.02"/>
       </dielectric>
       <dielectric name="Isola_FR408HR">
-        <params erel="3.68" tane="0.0092"/>
+        <params erel="3.61" tane="0.0092"/>
       </dielectric>
-      <conductor name="Copper_outer" condspec="cond" cond="5.8e7"/>
-      <conductor name="Copper_inner" condspec="cond" cond="5.8e7"/>
+      <conductor name="Copper_1oz+plated_thick_up" condspec="cond" cond="5.8e7"/>
+      <conductor name="Copper_1oz+plated_thin" condspec="cond" cond="5.8e7"/>
+      <conductor name="Copper_0.5oz_thin" condspec="cond" cond="5.8e7"/>
+      <conductor name="Copper_1oz+plated_thick_down" condspec="cond" cond="5.8e7"/>
     </materials>
     <mesh_defs>
       <mesh name="B.Cu_mesh" fill_type="Staircase" type="metal"/>
+      <mesh name="B.Cu_thick_mesh" fill_type="Staircase" type="metal"/>
+      <mesh name="B.Cu_thin_mesh" fill_type="Staircase" type="metal"/>
       <mesh name="Bar_def" fill_type="Bar" type="via"/>
       <mesh name="Conformal_def" fill_type="Conformal" type="metal"/>
       <mesh name="Default" fill_type="Staircase" type="metal"/>
       <mesh name="F.Cu_mesh" fill_type="Staircase" type="metal"/>
+      <mesh name="F.Cu_thick_mesh" fill_type="Staircase" type="metal"/>
+      <mesh name="F.Cu_thin_mesh" fill_type="Staircase" type="metal"/>
       <mesh name="Full_def" fill_type="Full" type="via"/>
       <mesh name="In1.Cu_mesh" fill_type="Staircase" type="metal"/>
       <mesh name="In2.Cu_mesh" fill_type="Staircase" type="metal"/>
@@ -30,9 +36,13 @@
       <mesh name="Via1_mesh" fill_type="Ring" type="via"/>
     </mesh_defs>
     <metal_model_defs>
-      <metal_model name="B.Cu_model" model_type="Normal"/>
+      <metal_model name="B.Cu_model" model_type="ThickMetal"/>
+      <metal_model name="B.Cu_thick_model" model_type="ThickMetal"/>
+      <metal_model name="B.Cu_thin_model" model_type="Normal"/>
       <metal_model name="Default" model_type="Normal"/>
-      <metal_model name="F.Cu_model" model_type="Normal"/>
+      <metal_model name="F.Cu_model" model_type="ThickMetal"/>
+      <metal_model name="F.Cu_thick_model" model_type="ThickMetal"/>
+      <metal_model name="F.Cu_thin_model" model_type="Normal"/>
       <metal_model name="In1.Cu_model" model_type="Normal"/>
       <metal_model name="In2.Cu_model" model_type="Normal"/>
       <metal_model name="TVM_def" model_type="TrueVolume"/>
@@ -47,22 +57,24 @@
       <TOP material="Lossless" model="Default"/>
       <diel name="Air" dielectric="Air" thickness="10.0"/>
       <diel name="Soldermask" dielectric="Soldermask" thickness="0.05">
-        <metal_techlayer name="F.Cu" layer_name="Metal1" thickness="0.0432" material="Copper_outer" model="F.Cu_model" color_pattern="1" mesh="F.Cu_mesh"/>
+        <metal_techlayer name="F.Cu_thick" layer_name="F.Cu" thickness="0.0432" material="Copper_1oz+plated_thick_up" model="F.Cu_thick_model" color_pattern="1" mesh="F.Cu_thick_mesh"/>
+        <metal_techlayer name="F.Cu_thin" layer_name="F.Cu_thin" thickness="0.0432" material="Copper_1oz+plated_thin" model="F.Cu_thin_model" color_pattern="4" mesh="F.Cu_thin_mesh"/>
       </diel>
-      <diel name="Isola_FR408HR" dielectric="Isola_FR408HR" thickness="0.1702">
-        <metal_techlayer name="In1.Cu" layer_name="In1.Cu" thickness="0.0175" material="Copper_inner" model="In1.Cu_model" color_pattern="2" mesh="In1.Cu_mesh"/>
+      <diel name="Isola_FR408HR" dielectric="Isola_FR408HR" thickness="0.2021">
+        <metal_techlayer name="In1.Cu" layer_name="In1.Cu" thickness="0.0175" material="Copper_0.5oz_thin" model="In1.Cu_model" color_pattern="2" mesh="In1.Cu_mesh"/>
       </diel>
       <diel name="Isola_FR408HR" dielectric="Isola_FR408HR" thickness="1.1938">
-        <metal_techlayer name="In2.Cu" layer_name="In2.Cu" thickness="0.0175" material="Copper_inner" model="In2.Cu_model" color_pattern="2" mesh="In2.Cu_mesh"/>
+        <metal_techlayer name="In2.Cu" layer_name="In2.Cu" thickness="0.0175" material="Copper_0.5oz_thin" model="In2.Cu_model" color_pattern="2" mesh="In2.Cu_mesh"/>
       </diel>
-      <diel name="Isola_FR408HR" dielectric="Isola_FR408HR" thickness="0.1702">
-        <metal_techlayer name="B.Cu" layer_name="B.Cu" thickness="0.0432" material="Copper_outer" model="B.Cu_model" color_pattern="1" mesh="B.Cu_mesh"/>
+      <diel name="Isola_FR408HR" dielectric="Isola_FR408HR" thickness="0.2021">
+        <metal_techlayer name="B.Cu_thick" layer_name="B.Cu" thickness="0.0432" material="Copper_1oz+plated_thick_down" model="B.Cu_thick_model" color_pattern="3" mesh="B.Cu_thick_mesh" direction="Down"/>
+        <metal_techlayer name="B.Cu_thin" layer_name="B.Cu_thin" thickness="0.0432" material="Copper_1oz+plated_thin" model="B.Cu_thin_model" color_pattern="4" mesh="B.Cu_thin_mesh"/>
       </diel>
       <diel name="Soldermask" dielectric="Soldermask" thickness="0.05"/>
       <diel name="Air" dielectric="Air" thickness="10.0"/>
       <BOTTOM material="Lossless" model="Default"/>
       <vias>
-        <via_techlayer name="Via1" layer_name="Via1" from="F.Cu" to="B.Cu" material="Lossless" model="Via1_model" color_pattern="0" mesh="Via1_mesh"/>
+        <via_techlayer name="Via1" layer_name="Via1" from="F.Cu_thick" to="B.Cu_thick" material="Lossless" model="Via1_model" color_pattern="0" mesh="Via1_mesh"/>
       </vias>
     </stackup>
   </public>
