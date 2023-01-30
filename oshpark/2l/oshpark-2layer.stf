@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<technology_file version="2" writeable="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://www.sonnetsoftware.com/schema/matl/matl-1.4.xsd">
+  <units cunit="SM" lunit="mm" runit="OHCM" srunit="OHSQ" tempunit="C"/>
+  <public>
+    <materials>
+      <dielectric name="Air">
+        <params erel="1.0" mrel="1.0" tane="0.0" tanm="0.0" cond="0.0"/>
+      </dielectric>
+      <dielectric name="Kingboard_KB6167F">
+        <params erel="4.7" tane="0.0155"/>
+      </dielectric>
+      <conductor name="Copper_2oz_thick_top" condspec="cond" cond="5.8e7"/>
+      <conductor name="Copper_2oz_thick_bottom" condspec="cond" cond="5.8e7"/>
+    </materials>
+    <mesh_defs>
+      <mesh name="Back_mesh" fill_type="Staircase" type="metal"/>
+      <mesh name="Bar_def" fill_type="Bar" type="via"/>
+      <mesh name="Conformal_def" fill_type="Conformal" type="metal"/>
+      <mesh name="Default" fill_type="Staircase" type="metal"/>
+      <mesh name="Front_mesh" fill_type="Staircase" type="metal"/>
+      <mesh name="Full_def" fill_type="Full" type="via"/>
+      <mesh name="Ring_def" fill_type="Ring" type="via"/>
+      <mesh name="Staircase_def" fill_type="Staircase" type="metal"/>
+      <mesh name="Vertices_def" fill_type="Vertices" type="via"/>
+    </mesh_defs>
+    <metal_model_defs>
+      <metal_model name="Back_model" model_type="ThickMetal"/>
+      <metal_model name="Default" model_type="Normal"/>
+      <metal_model name="Front_model" model_type="ThickMetal"/>
+      <metal_model name="TVM_def" model_type="TrueVolume"/>
+      <metal_model name="Thick_def" model_type="ThickMetal"/>
+      <metal_model name="Thin_def" model_type="Normal"/>
+      <via_model name="Array_def" model_type="Array"/>
+      <via_model name="Surface_def" model_type="Surface"/>
+      <via_model name="Volume_def" model_type="Volume"/>
+    </metal_model_defs>
+    <stackup>
+      <TOP material="Lossless" model="Default"/>
+      <diel name="Air" dielectric="Air" thickness="10.0">
+        <metal_techlayer name="Front" layer_name="Front" thickness="0.071" material="Copper_2oz_thick_top" model="Front_model" color_pattern="2" mesh="Front_mesh"/>
+      </diel>
+      <diel name="Kingboard_KB6167F" dielectric="Kingboard_KB6167F" thickness="0.762">
+        <metal_techlayer name="Back" layer_name="Metal1" thickness="0.071" material="Copper_2oz_thick_bottom" model="Back_model" color_pattern="1" mesh="Back_mesh" direction="Down"/>
+      </diel>
+      <diel name="Air" dielectric="Air" thickness="10.0"/>
+      <BOTTOM material="Lossless" model="Default"/>
+    </stackup>
+  </public>
+</technology_file>
