@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<technology_file version="3" writeable="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://www.sonnetsoftware.com/schema/matl/matl-1.5.xsd">
+  <technology value="SONNET|V1p0|GENERIC" id="6a761420a72041c589608c9431a5fedc" hdate="01/30/2023 04:30:05"/>
+  <reference/>
+  <global_temperature tnom="25.0"/>
+  <units cunit="SM" lunit="MM" runit="OHCM" srunit="OHSQ" tempunit="C"/>
+  <public>
+    <materials>
+      <dielectric name="Air">
+        <params erel="1.0" mrel="1.0" tane="0.0" tanm="0.0" cond="0.0"/>
+      </dielectric>
+      <dielectric name="Soldermask">
+        <params erel="3.500" tane="0.02"/>
+      </dielectric>
+      <dielectric name="FR408HR_106_prepreg">
+        <params erel="3.230" tane="0.011"/>
+      </dielectric>
+      <dielectric name="FR408HR_2113_core">
+        <params erel="3.660" tane="0.0092"/>
+      </dielectric>
+      <dielectric name="FR408HR_central_core">
+        <params erel="3.610" tane="0.0092"/>
+      </dielectric>
+      <conductor name="Copper_1oz+plated_thick_up" condspec="cond" cond="5.8000e+07"/>
+      <conductor name="Copper_1oz+plated_thin" condspec="cond" cond="5.8000e+07"/>
+      <conductor name="Copper_0.5oz_thin" condspec="cond" cond="5.8000e+07"/>
+      <conductor name="Copper_1oz+plated_thick_down" condspec="cond" cond="5.8000e+07"/>
+    </materials>
+    <mesh_defs>
+      <mesh name="B.Cu_mesh" fill_type="Staircase" type="metal"/>
+      <mesh name="B.Cu_thick_mesh" fill_type="Staircase" type="metal"/>
+      <mesh name="B.Cu_thin_mesh" fill_type="Staircase" type="metal"/>
+      <mesh name="Bar_def" fill_type="Bar" type="via"/>
+      <mesh name="Conformal_def" fill_type="Conformal" type="metal"/>
+      <mesh name="Default" fill_type="Staircase" type="metal"/>
+      <mesh name="F.Cu_mesh" fill_type="Staircase" type="metal"/>
+      <mesh name="F.Cu_thick_mesh" fill_type="Staircase" type="metal"/>
+      <mesh name="F.Cu_thin_mesh" fill_type="Staircase" type="metal"/>
+      <mesh name="Full_def" fill_type="Full" type="via"/>
+      <mesh name="In1.Cu_mesh" fill_type="Staircase" type="metal"/>
+      <mesh name="In2.Cu_mesh" fill_type="Staircase" type="metal"/>
+      <mesh name="In3.Cu_mesh" fill_type="Staircase" type="metal"/>
+      <mesh name="In4.Cu_mesh" fill_type="Staircase" type="metal"/>
+      <mesh name="Ring_def" fill_type="Ring" type="via"/>
+      <mesh name="Staircase_def" fill_type="Staircase" type="metal"/>
+      <mesh name="Vertices_def" fill_type="Vertices" type="via"/>
+      <mesh name="Via1_mesh" fill_type="Ring" type="via"/>
+    </mesh_defs>
+    <metal_model_defs>
+      <metal_model name="B.Cu_model" model_type="ThickMetal"/>
+      <metal_model name="B.Cu_thick_model" model_type="ThickMetal"/>
+      <metal_model name="B.Cu_thin_model" model_type="Normal"/>
+      <metal_model name="Default" model_type="Normal"/>
+      <metal_model name="F.Cu_model" model_type="ThickMetal"/>
+      <metal_model name="F.Cu_thick_model" model_type="ThickMetal"/>
+      <metal_model name="F.Cu_thin_model" model_type="Normal"/>
+      <metal_model name="In1.Cu_model" model_type="Normal"/>
+      <metal_model name="In2.Cu_model" model_type="Normal"/>
+      <metal_model name="In3.Cu_model" model_type="Normal"/>
+      <metal_model name="In4.Cu_model" model_type="Normal"/>
+      <metal_model name="TVM_def" model_type="TrueVolume"/>
+      <metal_model name="Thick_def" model_type="ThickMetal"/>
+      <metal_model name="Thin_def" model_type="Normal"/>
+      <via_model name="Array_def" model_type="Array"/>
+      <via_model name="Surface_def" model_type="Surface"/>
+      <via_model name="Via1_model" model_type="Volume"/>
+      <via_model name="Volume_def" model_type="Volume"/>
+    </metal_model_defs>
+    <stackup>
+      <TOP material="Lossless" model="Default"/>
+      <diel name="Air" dielectric="Air" thickness="10.0"/>
+      <diel name="Soldermask" dielectric="Soldermask" is_conformal="true" thickness="0.05">
+        <metal_techlayer layer_name="F.Cu" name="F.Cu_thick" material="Copper_1oz+plated_thick_up" model="F.Cu_thick_model" mesh="F.Cu_thick_mesh" thickness="0.0432" color_pattern="1"/>
+        <metal_techlayer layer_name="F.Cu_thin" name="F.Cu_thin" material="Copper_1oz+plated_thin" model="F.Cu_thin_model" mesh="F.Cu_thin_mesh" thickness="0.0432" color_pattern="4"/>
+      </diel>
+      <diel name="FR408HR_106_prepreg" dielectric="FR408HR_106_prepreg" thickness="0.1107">
+        <metal_techlayer layer_name="In1.Cu" name="In1.Cu" material="Copper_0.5oz_thin" model="In1.Cu_model" mesh="In1.Cu_mesh" thickness="0.0175" color_pattern="2"/>
+      </diel>
+      <diel name="FR408HR_2113_core" dielectric="FR408HR_2113_core" thickness="0.1016">
+        <metal_techlayer layer_name="In2.Cu" name="In2.Cu" material="Copper_0.5oz_thin" model="In2.Cu_model" mesh="In2.Cu_mesh" thickness="0.0175" color_pattern="2"/>
+      </diel>
+      <diel name="FR408HR_central_core" dielectric="FR408HR_central_core" thickness="0.9256">
+        <metal_techlayer layer_name="In3.Cu" name="In3.Cu" material="Copper_0.5oz_thin" model="In3.Cu_model" mesh="In3.Cu_mesh" thickness="0.0175" color_pattern="2"/>
+      </diel>
+      <diel name="FR408HR_2113_core" dielectric="FR408HR_2113_core" thickness="0.1016">
+        <metal_techlayer layer_name="In4.Cu" name="In4.Cu" material="Copper_0.5oz_thin" model="In4.Cu_model" mesh="In4.Cu_mesh" thickness="0.0175" color_pattern="2"/>
+      </diel>
+      <diel name="FR408HR_106_prepreg" dielectric="FR408HR_106_prepreg" thickness="0.1107">
+        <metal_techlayer layer_name="B.Cu" name="B.Cu_thick" material="Copper_1oz+plated_thick_down" model="B.Cu_thick_model" mesh="B.Cu_thick_mesh" thickness="0.0432" color_pattern="3" direction="Down"/>
+        <metal_techlayer layer_name="B.Cu_thin" name="B.Cu_thin" material="Copper_1oz+plated_thin" model="B.Cu_thin_model" mesh="B.Cu_thin_mesh" thickness="0.0432" color_pattern="4"/>
+      </diel>
+      <diel name="Soldermask" dielectric="Soldermask" thickness="0.05"/>
+      <diel name="Air" dielectric="Air" thickness="10.0"/>
+      <BOTTOM material="Lossless" model="Default"/>
+      <vias>
+        <via_techlayer layer_name="Via1" name="Via1" material="Lossless" model="Via1_model" from="F.Cu_thick" to="B.Cu_thick" mesh="Via1_mesh" color_pattern="0"/>
+      </vias>
+    </stackup>
+  </public>
+</technology_file>
